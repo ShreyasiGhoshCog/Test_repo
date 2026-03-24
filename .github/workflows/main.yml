@@ -1,18 +1,16 @@
 name: TicketBooking-Pipeline
+
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # This allows you to run it manually
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: # This is CRITICAL for Backstage to trigger it manually
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Run a one-line script
-        run: echo "Starting the CI process..."
-
-      - name: Run a multi-line script
-        run: |
-          echo "Building application..."
-          echo "Testing application..."
-          echo "Success!"
+        run: echo "Hello, Backstage!"
